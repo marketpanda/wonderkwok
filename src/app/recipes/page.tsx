@@ -9,11 +9,18 @@ const page = () => {
         
       const constRecipes = async() => {
         try {        
-            const getRecipes = await fetch(`https://api.api-ninjas.com/v1/recipe?query=${searchQuery}&offset=12`, {
-                method: 'GET',
-                headers: {   
-                    'X-Api-Key': process.env.NEXT_PUBLIC_RECIPE_API
+            const httpoptions = {
+                headers: new Headers({
+                    'Accept' : 'text/html',
+                    'Content-Type': 'text/plain; charset=utf-8'
+                }),
+                responseType: 'text' as 'json'
             }
+            const getRecipes = await fetch(`https://api.api-ninjas.com/v1/recipe?query=${searchQuery}&offset=12`, {
+                headers: {
+                    'Accept':'text/html',
+                    'Content-Type': 'application/json'
+                }
             })
             const data = await getRecipes.json()
             console.log(data) 
