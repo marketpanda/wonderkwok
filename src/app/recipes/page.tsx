@@ -17,7 +17,9 @@ const page = () => {
                 responseType: 'text' as 'json'
             }
             const getRecipes = await fetch(`https://api.api-ninjas.com/v1/recipe?query=${searchQuery}&offset=12`, {
+                method: 'GET',
                 headers: {
+                    'X-Api-Key': process.env.NEXT_PUBLIC_RECIPE_API as string,
                     'Accept':'text/html',
                     'Content-Type': 'application/json'
                 }
